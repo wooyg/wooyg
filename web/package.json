@@ -1,0 +1,52 @@
+{
+  "name": "mapc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "build": "webpack",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wooygcom/mapc.me.git"
+  },
+  "keywords": [
+    "mapc",
+    "php",
+    "core",
+    "framework"
+  ],
+  "author": "WooYG",
+  "license": "GPL-3.0+",
+  "bugs": {
+    "url": "https://github.com/wooygcom/mapc.me/issues"
+  },
+  "homepage": "https://github.com/wooygcom/mapc.me#readme",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "mapc-public/vendor/",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^4.5.3",
+    "jquery": "^3.5.1",
+    "popper.js": "^1.16.1"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.0.1",
+    "copy-webpack-plugin": "^6.2.1",
+    "css-loader": "^5.0.0",
+    "exports-loader": "^1.1.1",
+    "node-sass": "^5.0.0",
+    "postcss-loader": "^4.0.4",
+    "precss": "^4.0.0",
+    "sass-loader": "^10.0.4",
+    "style-loader": "^2.0.0",
+    "webpack": "^5.3.2",
+    "webpack-cli": "^4.1.0"
+  }
+}
