@@ -7,6 +7,7 @@ module.exports = {
     filename: 'bundle.js',
     path: path.join(__dirname, 'mapc-public/dist')
   },
+  mode: 'production',
   module: {
     rules: [
       {

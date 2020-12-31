@@ -3,7 +3,7 @@ define('__MAPC__', true);
 
 { // BLOCK:init:20180825:초기화
 
-	include('../env.php');
+    include('../env.php');
     include('../bootstrap.php');
 
 } // BLOCK
@@ -21,18 +21,18 @@ define('__MAPC__', true);
      * Routes
      *
      */
-	$ROUTES = include(CONFIG_PATH . 'routes.php');
+    $ROUTES = include(CONFIG_PATH . 'routes.php');
 
 } // BLOCK
 
 { // BLOCK:load_page:20180829:페이지 불러오기
 
-	/**
-	 *
-	 * Load page
-	 *
-	 */
-	include(APP_PATH . $ROUTES['vendor'] . DS . 'index.php');
+    /**
+     *
+     * Load page
+     *
+     */
+    include(APP_PATH . $ROUTES['vendor'] . DS . 'index.php');
 
 } // BLOCK
 
