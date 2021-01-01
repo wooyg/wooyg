@@ -1,3 +1,45 @@
+.gitignore
+.tmp.drivedownload/
+sftp-config.json
+package-lock.json
+sync.ffs_db
+composer.lock
+
+#webpack
+web/mapc-public/dist
+
+db/*
+
+secure/*
+
+web/env.php
+
+web/mapc-app/*
+!web/mapc-app/bare
+!web/mapc-app/Common
+!web/mapc-app/CommonAdmin
+
+web/mapc-system/*
+!web/mapc-system/config
+!web/mapc-system/library
+!web/mapc-system/proc
+
+# Cache, Session files
+web/mapc-temp/*
+!web/mapc-temp/cached/index.php
+!web/mapc-temp/log/index.php
+!web/mapc-temp/session/index.php
+
+# Upload directory
+web/mapc-data/*
+
+# 3rd party program
+web/node_modules/*
+web/vendor/*
+
+# --------------------------------------------------
+
+# etc
 */config/development
 */logs/log-*.php
 !*/logs/index.html
