@@ -7,9 +7,9 @@ services:
       dockerfile: Dockerfile-mariadb
     command: --default-authentication-plugin=mysql_native_password
     volumes:
-      - "../db:/var/lib/mysql"
-    ports:
-      - 3306:3306
+      - type: bind
+        source: ../db/
+        target: /var/lib/mysql
     environment:
       - "MYSQL_DATABASE=dbname"
       - "MYSQL_USER=userid"
@@ -22,7 +22,9 @@ services:
       context: .
       dockerfile: Dockerfile-php-apache
     volumes:
-      - "../web:/var/www/html/"
+      - type: bind
+        source: ../web/
+        target: /var/www/html
     ports:
       - 80:80
       - 443:443
