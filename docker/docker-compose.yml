@@ -1,7 +1,7 @@
 version: "3"
 services:
-  mapcdb:
-    container_name: mapcdb
+  wooygdb:
+    container_name: wooygdb
     build:
       context: .
       dockerfile: Dockerfile-mariadb
@@ -16,8 +16,8 @@ services:
       - "MYSQL_PASSWORD=userpass"
       - "MYSQL_ROOT_PASSWORD=root_password"
       - "TZ=Asia/Seoul"
-  mapcweb:
-    container_name: mapcweb
+  wooygweb:
+    container_name: wooygweb
     build:
       context: .
       dockerfile: Dockerfile-php-apache
@@ -29,16 +29,16 @@ services:
       - 80:80
       - 443:443
     depends_on:
-      - mapcdb
-  mapcphpmyadmin:
-    container_name: mapcphpmyadmin
+      - wooygdb
+  wooygphpmyadmin:
+    container_name: wooygphpmyadmin
     image: phpmyadmin/phpmyadmin
     links:
-      - mapcdb
+      - wooygdb
     ports:
       - 8185:80
     environment:
-      PMA_HOST: mapcdb
+      PMA_HOST: wooygdb
       PMA_USER: root
       PMA_PASSWORD: root_password
       PMA_ARBITRARY: 1

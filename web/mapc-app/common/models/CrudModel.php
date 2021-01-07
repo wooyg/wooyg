@@ -17,7 +17,7 @@ class Crud {
 
     public function __construct($args = []) {
 
-        $this->table = $args['table'];
+        $this->table = 'TB_LEADER_INFO';$args['table'];
         $this->vars  = R::xdispense($this->table);
 
     }
@@ -56,6 +56,14 @@ class Crud {
         R::trash($this->vars);
 
     }
+
+    public function createMeta(array $args = []) {}
+
+    public function retrieveMeta(array $args = []) {}
+
+    public function updateMeta(array $args = []) {}
+
+    public function deleteMeta($key = '') {}
 
     /**
      * @usage
