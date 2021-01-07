@@ -39,11 +39,17 @@ WooYG
 
 Etc
 ------------------------------
-1. 추가로 설치할 경우(필요할 때만)
+
+1. 클론 직후 .gitignore 무시하게끔 설정
+    ```
+    $ git update-index --assume-unchanged .gitignore
+    ```
+
+2. 추가로 설치할 경우(필요할 때만)
+
     ```
     npm install PACKAGE --save
     ```
-
 
 접속
 ------------------------------
