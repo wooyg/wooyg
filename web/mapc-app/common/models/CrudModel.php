@@ -17,7 +17,7 @@ class Crud {
 
     public function __construct($args = []) {
 
-        $this->table = 'TB_LEADER_INFO';$args['table'];
+        $this->table = $args['table'];
         $this->vars  = R::xdispense($this->table);
 
     }
