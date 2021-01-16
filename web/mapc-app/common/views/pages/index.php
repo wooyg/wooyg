@@ -22,12 +22,12 @@ include(LAYOUT_PATH . $layout . '/header.php');
     </thead>
     <tbody>
         <?php
-            foreach($v['postList'] as $var) {
+            foreach($v['pagesList'] as $var) {
         ?>
         <tr>
-            <td><?= $var['posts_uid']; ?></td>
-            <td><?= $var['posts_title']; ?></td>
-            <td><?= $var['posts_regdate']; ?></td>
+            <td><?= $var['page_uid']; ?></td>
+            <td><?= $var['page_title']; ?></td>
+            <td><?= $var['page_regdate']; ?></td>
         </tr>
         <?php
             }

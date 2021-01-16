@@ -10,6 +10,8 @@ services:
       - type: bind
         source: ../db/
         target: /var/lib/mysql
+    ports:
+      - 3306:3306
     environment:
       - "MYSQL_DATABASE=dbname"
       - "MYSQL_USER=userid"
