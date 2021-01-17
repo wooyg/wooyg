@@ -8,7 +8,7 @@ use Mapc\Common\Crud;
  * Posts Model
  * @version 0.1
  */
-class Posts extends Crud {
+class Pages extends Crud {
 
 } // class
 
