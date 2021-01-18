@@ -6,6 +6,6 @@ include(PROC_PATH . 'proc.db.php');
 
 use Mapc\Common\Posts;
 
-$posts = new Posts();
+$posts = new Posts(['table' => 'board']);
 
 // this is it
