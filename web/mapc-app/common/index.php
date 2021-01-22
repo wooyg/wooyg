@@ -1,7 +1,7 @@
 <?php
 { // BLOCK:proc:20191204:선처리
 
-    $rootDir = $rootDir ? $rootDir : __DIR__;
+    if(! isset($rootDir)) { $rootDir = __DIR__; }
 
 } // BLOCK
 

@@ -55,24 +55,27 @@ Etc
 ------------------------------
 
 1. 개발할 때의 접속주소
-    http://접속주소/mapc.me/web/mapc-public/
+    http://접속주소/mapc-public/
 
 2. 실 서버에서는 "mapc-public'이 웹루트가 되도록 설정할 것!!!(보안)
 
+    ```
+    // apache.conf 예제
+    DocumentRoot /var/www/html/mapc-public
+    ```
 
-새로운 페이지 만드는 방법
+
+간단한 설명(새로운 페이지 만드는 방법)
 ------------------------------
 
-1. SERVER_URL/my/diary/edit 라는 페이지를 만드려면
+1. SERVER_URL/my/diary 라는 페이지를 만드려면
 
-    1. mapc-app/ 디렉토리의 "bare" 디렉토리를 "my"라는 디렉토리로 복사하고
-    2. "my/controllers 와 views 각 디렉토리 안의 index.php를 edit.php로 복사하면
-    3. 설치된URL/my/diary/edit 로 접속 할 수 있다.
-
-2. // #TODO 위 내용의 설명서 만들어야 됨
+    1. mapc-app/ 디렉토리의 "bare" 디렉토리를 "my"라는 디렉토리로 복사
+    2. "my/controllers 와 views 각 디렉토리 안의 index.php를 diary.php로 복사
+    3. /my/controllers/diary.php(Controller), /my/views/diary.php(View)를 편집하면 /my/diary 페이지가 바뀜
 
 
-프로그램 구동절차
+자세한 설명(프로그램 구동절차)
 ------------------------------
 
 0. //URL/[VENDOR]/[MODULE]/[ACTION] 로 접속 할 경우 벌어지는 일~
@@ -85,33 +88,30 @@ Etc
             기본은 config 이고 이걸 config.site 이런식으로 바꿀 수 있음
             여러가지 환경설정을 만들어두고 필요에 따라 바꿀 수 있음
         2. config(사이트별 특화된 환경설정), routes(Routes설정) 불러옴
-            Common/config/routes.php 에서 Common/posts/123/edit([VENDOR]/[MODULE]/[ID]/[ACTION]) 순으로 Argument를 받게끔 설정됨
-
-    2. 입력값(벤더, 모듈, 액션 등)에 따라서 필요한 파일 불러오기(다음장으로)
-        /mapc-app/Common/index.php
+            Common/config/routes.php 에서 Common/posts/123/edit ([VENDOR]/[MODULE]/[ID]/[ACTION]) 순으로 Argument를 받게끔 설정됨
 
 2. /mapc-app/Common/index.php
     1. Controllers/PostsController.php 불러옴
     2. Views/PostsView.php 불러옴
 
-3. 각각의 PostsController.php, PostsView.php
+3. PostsController.php, PostsView.php 호출
     1. PostsController(또는 View) 안에서 switch case 문을 사용해서 각 action을 프로그램해도 되고...
     2. posts/edit.php 불러오게 해도 됨
-    3. 아래처럼
-        1. Controller에서 전부 처리하게해도 되고
-            PostsController.php
+    3. PostsController.php에서는 아래처럼
+        1. 간단한 로직은 Controller에서 전부 처리하게해도 되고
             switch($ROUTES['action']) {
                 case 'edit':
+                    $posts = getPosts();
+                    break;
+                case 'view':
+                    break;
             }
-        2. 각각의 Action별로 나누고 불러오는 방식으로 해도 되고...
+        2. 복잡할 경우 각각의 Action별로 호출 해도 되고...
             include('posts/edit.php');
 
-
 4. 실제 프로그램 영역
-    Controller/posts/edit.php 에서 선처리!!!!! (array $v에 출력할 내용을 저장)
-    View/posts/edit.php 에서 화면출력!!!!!
-    전체에 같은 설정을 적용하려면 PostsView.php 에서 header 등 필요한 내용을 설정
-    각각의 페이지에서 화면출력을 따로 설정하려면 posts/edit.php 에서 header나 footer등을 불러오게 하면 됨.
+    * Controller/posts/edit.php 에서 선처리!!!!! (array $v에 출력할 내용을 저장)
+    * View/posts/edit.php 에서 화면출력!!!!!
 
 
 기본형태 - vendor
@@ -120,8 +120,8 @@ Etc
 vendor/index.php [1/2]
 --------------------------------------------------
 
-* 일반적인 형태(vendor/Common/index.php)와 별다른 차이가 없으면 아래 내용 그대로 사용
-
+* 일반적인 형태(vendor/Common/index.php)와 별다른 차이가 없으면 아래 내용 그대로 복사해서 사용
+    
     ```
     <?php
     { // BLOCK:get_common:20150825:Common/index.php 그대로 가져오기
@@ -139,7 +139,8 @@ vendor/index.php [2/2]
 --------------------------------------------------
 
 * vendor/index.php를 처음 만들 때는 [1/2] 또는 [2/2]를 복사 붙여넣기 하면 됨
-* vendor/Common/index.php(일반적인형태)와 다른 형태로 만들고 싶을때 사용
+* 아래는 vendor/Common/index.php(일반적인형태)와 다른 형태로 만들고 싶을때 사용
+* 보통의 경우 vendor/index.php는 [1/2]를 그대로 복사해서 사용하면 됨
 
     ```
     <?php
@@ -181,21 +182,12 @@ vendor/index.php [2/2]
     
     ```
 
+
 기본형태 - Controllers
 ==================================================
 
-작동방식
---------------------------------------------------
-
-1. config/routes.php의 설정에 따라
-  controllers/packageController.php에서
-  controllers/package/module.php 호출
-2. package전체에서 사용하는 선처리, 후처리 할 것이 있으면 packageController.php에서
-  module안에서만 필요한건 module.php에서 처리
-
-
-
 vendor/controllers/packageController.php
+(vendor/views/packageView.php 도 같음)
 --------------------------------------------------
 ```
 <?php
@@ -208,44 +200,49 @@ include($ROUTES['callback'] . '.php');
 
 vendor/controllers/package/module.php
 --------------------------------------------------
-```
-<?php
-if(!defined("__MAPC__")) { exit(); }
 
-if($_SERVER['REQUEST_METHOD'] == 'POST') {
+1. 화면출력의 선처리 모듈의 경우(생략)
+    ```
+    <?php
+    if(!defined("__MAPC__")) { exit(); }
 
-    // POST값이 들어오면 "실행"
-    switch($_POST['_method']) {
-        case 'post':
-        case 'put':
-        case 'patch':
-        case 'delete':
-        default:
-            // 
-            break;
+    include(PROC_PATH . 'proc.autoload.php');
+    include(PROC_PATH . 'proc.db.php');
+
+    use Mapc\Common\Users;
+
+    $user = new Users(['table' => $table]);
+    ```
+
+2. 입력값처리하는 모듈의 경우
+    ```
+    <?php
+    if(!defined("__MAPC__")) { exit(); }
+
+    include(PROC_PATH . 'proc.autoload.php');
+    include(PROC_PATH . 'proc.db.php');
+    include(PROC_PATH . 'proc.exec.php'); // csrf 처리
+
+    use Mapc\Common\Users;
+
+    $user = new Users(['table' => $table]);
+
+    if($_SERVER['REQUEST_METHOD'] == 'POST') {
+    
+        // POST값이 들어오면 "실행"
+        switch($_POST['_method']) {
+            case 'post':
+            case 'put':
+            case 'patch':
+            case 'delete':
+            default:
+                // 
+                break;
+        }
     }
-}
 
-// this is it
-```
-
-Autoload
---------------------------------------------------
-include(PROC_PATH . 'proc.autoload.php'); // Mapc 내부 패키지 불러오기 위해서
-
-
-DB접근이 필요할 때
---------------------------------------------------
-$db   = include(PROC_PATH . 'proc.db.php');
-$user = new Users(['db' => $db, 'table' => $table]);
-
-
-모델클래스 가져오기
---------------------------------------------------
-use Mapc\Common\Users;
-
-### 실행화일일 경우
-include(PROC_PATH . 'proc.exec.php');
+    // this is it
+    ```
 
 
 기본형태 - Models
@@ -277,17 +274,11 @@ class Bare {
 기본형태 - Views
 ==================================================
 
-Form
+vendor/views/module/index.php [1/2]
 --------------------------------------------------
 
-### 기본형태
+단순한 형태 : moduleView.php에서 모두처리, 스크립트 처리가 필요없는 프로그램에서만 사용, 1번 기본형 추천
 
-1. 기본
-```
-include($ROUTES['callback'] . '.php');
-```
-
-2. 단순 : moduleView.php에서 모두처리, 스크립트 처리가 필요없는 프로그램에서만 사용, 1번 기본형 추천
 ```
 <?php
 /**
@@ -297,13 +288,14 @@ include($ROUTES['callback'] . '.php');
  * @version 0.1
  *
  */
-$layout = $config['site']['layout'];
+$layout = 'core';
 
 include(LAYOUT_PATH . $layout . DS . 'head.php');
 include(LAYOUT_PATH . $layout . DS . 'header.php');
 ?>
 
-내용
+// 내용출력
+<?= $v['foo']; ?>
 
 <?php
 include(LAYOUT_PATH . $layout . DS . 'footer.php');
@@ -313,20 +305,33 @@ include(LAYOUT_PATH . $layout . DS . 'foot.php');
 ```
 
 
-### 스크립트 추가할 때
+vendor/views/module/index.php [2/2]
+--------------------------------------------------
 
 ```
-$v['head']['extension'] = <<< EOT
+<?php
+/**
+ *
+ * View
+ *
+ * @version 0.1
+ *
+ */
+
+$layout = 'core';
+
+$v['header']['extension'] = <<< EOT
 <!-- include libraries(jQuery, bootstrap) -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
+<script src="<?= $v['url']['layout']; ?>path/src.js">
+<script src="{ROOT_URL}/app.js"></script>
 EOT;
-```
-
-### 스크립트 추가하고 변수 넣을 때
 $v['header']['extension'] = sprintf($v['header']['extension'], ROOT_URL);
 
+include(LAYOUT_PATH . $layout . DS . 'head.php');
+include(LAYOUT_PATH . $layout . DS . 'header.php');
+?>
 
-### 폼 입력할 때 기본형태
 <!-- form:#formv1 -->
 <form method="post" action="./" enctype="multipart/form-data">
     <input type="hidden" name="_csrf" value="<?= $_SESSION['csrf']; ?>" />
@@ -334,10 +339,9 @@ $v['header']['extension'] = sprintf($v['header']['extension'], ROOT_URL);
     <input type="hidden" name="content_type" value="<?= $ROUTES['action'] ? $ROUTES['action'] : 'intro'; ?>" />
 </form>
 
-### 스크립트, CSS 앞에...
+<?php
+include(LAYOUT_PATH . $layout . DS . 'footer.php');
+include(LAYOUT_PATH . $layout . DS . 'foot.php');
 
-아래처럼 $v['url']['layout']를 붙일 것...
-
-```
-<script src="<?= $v['url']['layout']; ?>path/src.js">
+// this is it
 ```

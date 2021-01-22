@@ -3,7 +3,7 @@ include(LAYOUT_PATH . $layout . '/head.php');
 include(LAYOUT_PATH . $layout . '/header.php');
 ?>
 
-    <h1>회원가입</h1>
+    <h1>로그인</h1>
 
     <form action="signup" method="post">
         <input type="hidden" name="_csrf" value="<?= $_SESSION['csrf']; ?>" />
@@ -15,7 +15,8 @@ include(LAYOUT_PATH . $layout . '/header.php');
             <input name="userpasswd" type="password" placeholder="비밀번호를 입력하세요.">
         </div>
         <div class="form-group">
-            <input name="userpasswd_again" type="password" placeholder="비밀번호를 입력하세요.">
+            <input type="checkbox"> 아이디 저장
+            <button class="button">확인</button>
         </div>
         <div class="form-group">
             <button class="button">확인</button>

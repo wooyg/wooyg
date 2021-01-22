@@ -1,16 +1,14 @@
 <?php
 $layout = 'core';
 
-include(LAYOUT_PATH . $layout . '/head.php');
-include(LAYOUT_PATH . $layout . '/header.php');
+include(LAYOUT_PATH . $layout . DS . 'head.php');
+include(LAYOUT_PATH . $layout . DS . 'header.php');
 ?>
 
-<div class="content_view">
-    <?= $v['foo']; ?>
-</div>
+<?= $v['foo']; ?>
 
 <?php
-include(LAYOUT_PATH . $layout . '/footer.php');
-include(LAYOUT_PATH . $layout . '/foot.php');
+include(LAYOUT_PATH . $layout . DS . 'footer.php');
+include(LAYOUT_PATH . $layout . DS . 'foot.php');
 
 // this is it
