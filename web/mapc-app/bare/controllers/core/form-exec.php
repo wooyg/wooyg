@@ -1,7 +1,8 @@
 <?php
+// #TODO form-exec예제 만들기
 if(!defined("__MAPC__")) { exit(); }
 
-include(PROC_PATH . 'proc.autoload.php'); // compoesr 패키지 불러오기 위해서
+include(PROC_PATH . 'proc.autoload.php');
 include(PROC_PATH . 'proc.exec.php');
 include(LIBRARY_PATH . 'library/some-library.php');
 
