@@ -40,7 +40,7 @@ WooYG
 설치2 (선택)
 ------------------------------
 
-1. 클론 직후 .gitignore 무시하게끔 설정
+1. 클론 직후 .gitignore 무시하게끔 설정.
     ```
     $ git update-index --assume-unchanged .gitignore
     ```
