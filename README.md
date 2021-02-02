@@ -10,7 +10,7 @@ WooYG
 * 쉬운 업데이트
 
 
-설치
+설치1 (필수)
 ------------------------------
 
 1. 서버도구 설치
@@ -37,7 +37,7 @@ WooYG
     ```
 
 
-Etc
+설치2 (선택)
 ------------------------------
 
 1. 클론 직후 .gitignore 무시하게끔 설정
@@ -65,60 +65,48 @@ Etc
     ```
 
 
-간단한 설명(새로운 페이지 만드는 방법)
+디렉토리구조
+--------------------------------------------------
+/mapc-app
+    /bare : 새로운 프로그램 만들 때 이 디렉토리를 복사해서 사용
+        /controllers
+            /core
+                /index.php : /mapc-public/index.php에서 호출하는 페이지
+        /models : 프로그램에서 처리해야 되는 객체들이 저장된 곳
+        /views
+            /core
+                /index.php : 컨트롤러에 대응하는 뷰페이지
+/mapc-public
+    /index.php 처음 접속 페이지
+/mapc-system
+    /config 다른 디렉토리로(예:config.my) 복사해서 사용가능
+    /library 함수들 모음
+
+/env.php : 디렉토리 및 기본환경설정 config을 config.my 로 변경해서 사용가능
+
+
+FAQ
 ------------------------------
 
 1. SERVER_URL/my/diary 라는 페이지를 만드려면
 
     1. mapc-app/ 디렉토리의 "bare" 디렉토리를 "my"라는 디렉토리로 복사
-    2. "my/controllers 와 views 각 디렉토리 안의 index.php를 diary.php로 복사
-    3. /my/controllers/diary.php(Controller), /my/views/diary.php(View)를 편집하면 /my/diary 페이지가 바뀜
+    2. "my/controllers 와 views 각 디렉토리 안의 index.php를 diary.php로 복사하거나 새로 만듦
+    3. SERVER_URL/my/diary 로 접속
 
 
-자세한 설명(프로그램 구동절차)
-------------------------------
 
-0. //URL/[VENDOR]/[MODULE]/[ACTION] 로 접속 할 경우 벌어지는 일~
-    (아래는 //URL/Common/posts/123/edit 으로 접속 할 경우를 예로 들었음)
 
-1. /mapc-public/index.php
-    1. 상수값 설정, 환경설정을 불러옴
-        1. env에서 기본환경설정(디렉토리, URL설정) 불러옴
-            어느 디렉토리에서 환경설정불러올지 설정할 수 있음
-            기본은 config 이고 이걸 config.site 이런식으로 바꿀 수 있음
-            여러가지 환경설정을 만들어두고 필요에 따라 바꿀 수 있음
-        2. config(사이트별 특화된 환경설정), routes(Routes설정) 불러옴
-            Common/config/routes.php 에서 Common/posts/123/edit ([VENDOR]/[MODULE]/[ID]/[ACTION]) 순으로 Argument를 받게끔 설정됨
 
-2. /mapc-app/Common/index.php
-    1. Controllers/PostsController.php 불러옴
-    2. Views/PostsView.php 불러옴
 
-3. PostsController.php, PostsView.php 호출
-    1. PostsController(또는 View) 안에서 switch case 문을 사용해서 각 action을 프로그램해도 되고...
-    2. posts/edit.php 불러오게 해도 됨
-    3. PostsController.php에서는 아래처럼
-        1. 간단한 로직은 Controller에서 전부 처리하게해도 되고
-            switch($ROUTES['action']) {
-                case 'edit':
-                    $posts = getPosts();
-                    break;
-                case 'view':
-                    break;
-            }
-        2. 복잡할 경우 각각의 Action별로 호출 해도 되고...
-            include('posts/edit.php');
-
-4. 실제 프로그램 영역
-    * Controller/posts/edit.php 에서 선처리!!!!! (array $v에 출력할 내용을 저장)
-    * View/posts/edit.php 에서 화면출력!!!!!
-
+아래는 삭제 예정
 
 기본형태 - vendor
 ==================================================
 
 vendor/index.php [1/2]
---------------------------------------------------
+
+* bare/index.php 참고
 
 * 일반적인 형태(vendor/Common/index.php)와 별다른 차이가 없으면 아래 내용 그대로 복사해서 사용
     
@@ -187,8 +175,8 @@ vendor/index.php [2/2]
 ==================================================
 
 vendor/controllers/packageController.php
-(vendor/views/packageView.php 도 같음)
 --------------------------------------------------
+
 ```
 <?php
 if(!defined("__MAPC__")) { exit(); }
