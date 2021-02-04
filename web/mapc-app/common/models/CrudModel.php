@@ -5,6 +5,7 @@ use \RedBeanPHP\R;
 
 /**
  * Curd Model
+ *
  * @version 0.1
  */
 class Crud {

@@ -4,11 +4,11 @@
 	$routes = [];
 
 // #TODO phacon의 ROUTE->add 함수 또는 Laravel의 ROUTE::post('/uri', '/callback') 같은 클래스를 만들어야 됨
-	$routes['vendor'] = $mapcArgs[1] ? $mapcArgs[1] : DEFAULT_VENDOR;
-	$routes['module'] = $mapcArgs[2] ? $mapcArgs[2] : DEFAULT_MODULE;
+	$routes['vendor'] = isset($mapcArgs[1]) ? $mapcArgs[1] : DEFAULT_VENDOR;
+	$routes['module'] = isset($mapcArgs[2]) ? $mapcArgs[2] : DEFAULT_MODULE;
 
-	$routes['id']     = $mapcArgs[3];
-	$routes['action'] = $mapcArgs[4] ? $mapcArgs[4] : DEFAULT_ACTION;
+	$routes['id']     = isset($mapcArgs[3]);
+	$routes['action'] = isset($mapcArgs[4]) ? $mapcArgs[4] : DEFAULT_ACTION;
 	$routes['args']   = array_slice($mapcArgs, 4);
 
 	$routesFile = APP_PATH . $routes['vendor'] . '/config/routes.php';
