@@ -29,6 +29,8 @@
     $v['url']  = $CONFIG['url'];
     $v['menu'] = $CONFIG['menu'];
     $v['site'] = $CONFIG['site'];
+    $v['user'] = $CONFIG['user'];
+    
     unset($CONFIG);
 
     @include($rootDir . '/views/' . $ROUTES['module'] . 'View.php');
