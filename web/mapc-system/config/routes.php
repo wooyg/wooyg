@@ -7,7 +7,7 @@
 	$routes['vendor'] = isset($mapcArgs[1]) ? $mapcArgs[1] : DEFAULT_VENDOR;
 	$routes['module'] = isset($mapcArgs[2]) ? $mapcArgs[2] : DEFAULT_MODULE;
 
-	$routes['id']     = isset($mapcArgs[3]);
+	$routes['id']     = isset($mapcArgs[3]) ? $mapcArgs[3] : '';
 	$routes['action'] = isset($mapcArgs[4]) ? $mapcArgs[4] : DEFAULT_ACTION;
 	$routes['args']   = array_slice($mapcArgs, 4);
 

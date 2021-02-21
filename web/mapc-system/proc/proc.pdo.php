@@ -10,6 +10,8 @@ if(!defined('__MAPC__')) { exit(); }
         echo $e->getMessage();
     }
 
+    return $pdo;
+
 } // BLOCK
 
 // this is it

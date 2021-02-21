@@ -17,6 +17,7 @@ RUN docker-php-ext-install pdo
 RUN docker-php-ext-install pdo_mysql
 RUN docker-php-ext-install opcache
 RUN docker-php-ext-install phar
+RUN docker-php-ext-install exif
 
 RUN a2enconf servername
 RUN a2enmod rewrite
