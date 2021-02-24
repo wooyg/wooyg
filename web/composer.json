@@ -1,7 +1,11 @@
 {
-    "name": "wooyg/mapcme",
-    "description": "The Mapcme Framework.",
-    "keywords": ["framework", "mapcme", "cms"],
+    "name": "wooyg/wooyg",
+    "description": "The WooYG Framework.",
+    "keywords": [
+        "framework",
+        "mapcme",
+        "cms"
+    ],
     "license": "MIT",
     "type": "project",
     "require": {
@@ -15,8 +19,7 @@
             "App\\": "app/"
         }
     },
-    "autoload-dev": {
-    },
+    "autoload-dev": {},
     "config": {
         "vendor-dir": "vendor",
         "preferred-install": "dist"

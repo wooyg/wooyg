@@ -13,7 +13,7 @@
      *
      */
     $v = [];
-    @include($rootDir . DS . 'controllers' . DS . $ROUTES['module'] . 'Controller.php');
+    @include($rootDir . DS . 'controllers' . DS . $ROUTES['module'] . '-controller.php');
 
 } // BLOCK
 
@@ -33,7 +33,7 @@
     
     unset($CONFIG);
 
-    @include($rootDir . '/views/' . $ROUTES['module'] . 'View.php');
+    @include($rootDir . '/views/' . $ROUTES['module'] . '-view.php');
 
 } // BLOCK
 

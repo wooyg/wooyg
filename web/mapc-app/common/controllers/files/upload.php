@@ -76,6 +76,6 @@ imageThumbnail(
 }
 
 // 파일 정보 출력
-echo ROOT_URL . 'Common/files/' . $server_filename . $args;
+echo ROOT_URL . 'common/files/' . $server_filename . $args;
 
 // this is it

@@ -2,8 +2,8 @@
 if(!defined("__MAPC__")) { exit(); }
 
 // usage
-// //[URL]/Common/files/[FILENAME].jpg?group=[GROUP]
-// //[URL]/Common/files/20191209-131746-12345.jpg?group=featured
+// //[URL]/common/files/[FILENAME].jpg?group=[GROUP]
+// //[URL]/common/files/20191209-131746-12345.jpg?group=featured
 $group  = $_GET['group'];
 $group2 = $_GET['group2'];
 // 파일명
