@@ -1,7 +1,7 @@
 <?php
 namespace Mapc\Common;
 
-use \RedBeanPHP\R;
+use \RedBeanPHP\R as R;
 
 /**
  * Curd Model
@@ -10,11 +10,10 @@ use \RedBeanPHP\R;
  */
 class Crud {
 
-	public $db;
-	public $table;
+    private $id;
+    public  $vars;
+    public  $table;
 
-    public $id;
-    public $vars;
 
     public function __construct($args = []) {
 
