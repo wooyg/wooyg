@@ -293,7 +293,7 @@ include(LAYOUT_PATH . $layout . DS . 'foot.php');
 ```
 
 
-vendor/views/module/index.php [2/2]
+vendor/views/module/index.php [2/2] (mapc-app/bare/views/core/form.php 참고)
 --------------------------------------------------
 
 ```
