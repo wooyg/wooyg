@@ -10,4 +10,9 @@ use Mapc\Common\Users;
 
 $obj_users = new Users;
 
+$query = " select * from tableA where fielda = ? and fieldb = ? ";
+$value = ['a', 'b'];
+
+R::exec( $query, $value );
+
 // this is it
