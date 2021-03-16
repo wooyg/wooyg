@@ -41,7 +41,12 @@ $config = [
 
     'url' => [
         'layout' => ROOT_URL . 'layout' . DS . 'sbadmin' . DS, // 레이아웃의 기본 URL
-        'oAuthServer' => 'http://127.0.0.1/mapc.me/web/mapc-public/'
+        'oAuthServer' => 'http://127.0.0.1/mapc.me/web/mapc-public/',
+        'user' => [
+            'signin'  => ROOT_URL . 'common/users/actions/signin',
+            'signup'  => ROOT_URL . 'common/users/actions/signup',
+            'signout' => ROOT_URL . 'common/users/actions/signout'
+        ]
     ],
 
     'menu' => [

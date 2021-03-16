@@ -5,13 +5,12 @@ if(!defined("__MAPC__")) { exit(); }
 
 { // 입력값 처리
 
-    $name  = $_POST['name'];
-    $email = $_POST['email'];
-    $pwd   = $_POST['pwd'];
-    $pwd_retype = $_POST['pwd_retype'];
-    $memo  = $_POST['memo'];
+    $user_name     = $_POST['user_name'];
+    $user_email    = $_POST['user_email'];
+    $user_password = $_POST['user_password'];
+    $user_password_again = $_POST['user_password_again'];
 
-    if($pwd != $pwd_retype) {
+    if($user_password != $user_password_again) {
         // #TODO 암호가 맞지 않음 에러표시
     }
 
@@ -28,10 +27,9 @@ if(!defined("__MAPC__")) { exit(); }
 
 } // BLOCK
 
-$objUser->vars->user_name  = $name;
-$objUser->vars->user_id = $email;
-$objUser->vars->passwd   = $pwd;
-$objUser->vars->memo  = $memo;
+$objUser->vars->user_name = $name;
+$objUser->vars->user_id   = $email;
+$objUser->vars->passwd    = $pwd;
 
 $id = $objUser->create($objUser->vars);
 
@@ -40,7 +38,7 @@ if($id) {
 } else {
     $return['result'] = 'fail';
 }
-print_r($return);
+
 return json_encode($return);
 
 exit;
