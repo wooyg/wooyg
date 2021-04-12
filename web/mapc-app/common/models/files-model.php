@@ -78,7 +78,11 @@ class Files {
         $allowed_ext = array('jpg','jpeg','png','gif');
 
         if(! is_dir($uploads_dir_real)) {
-            mkdir($uploads_dir_real, 0755, true);
+            if(@mkdir($uploads_dir_real, 0755, true)) {
+                $mkdirResult = true;
+            } else {
+                $mkdirResult = false;
+            }
         }
 
         if(move_uploaded_file($file['tmp_name'], $uploads_dir_real . DIRECTORY_SEPARATOR . $server_filename)) {

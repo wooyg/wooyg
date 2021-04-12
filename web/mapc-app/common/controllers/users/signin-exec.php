@@ -7,7 +7,7 @@ include(LIBRARY_PATH . 'http_move.php');
 // #TODO 아래는 임시코드
 
 session_start();
-$_SESSION['']
+
 use Mapc\Common\Users;
 
 
